@@ -116,7 +116,7 @@
 
     <li>
       <div class="game-a" onclick="openWin('{{= value. url }}')">
-      <!--  <img src="http://www.iyixi.cn{{= value. img }}" alt="" style="max-height: 180px; min-height: 180px;"> -->
+      <!--  <img src="http://h4.3a3.com.cn{{= value. img }}" alt="" style="max-height: 180px; min-height: 180px;"> -->
 	       <img src="{{= value. img }}" alt="" style="max-height: 180px; min-height: 180px;">
           <em class="aui-group-three" style=" font-size: 12px; "> {{= value. title }}</em>
 
@@ -405,8 +405,8 @@ function GetVlist() {
     var div_list = $api.byId('div_list');
     var template = $api.byId('template');
     api.ajax({
-      //全部列表  url: 'http://www.iyixi.cn/login/login/mnlist.html',
-        url: 'http://www.iyixi.cn/login/login/mnlist.html',    //随机获取12
+      //全部列表  url: 'http://h4.3a3.com.cn/login/login/mnlist.html',
+        url: 'http://h4.3a3.com.cn/login/login/mnlist.html',    //随机获取12
         method: 'get'
     },function(ret, err){
         if (ret) {
