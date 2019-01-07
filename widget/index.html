@@ -95,6 +95,7 @@
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" ></li>
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >福利</li>
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >会员</li>
+            <li tapmode="hover" onclick="goUrl({name: 'baidu', url: 'http://www.baidu.com', pageName: 'baidu'});" class="flex-con" >百度</li>
         </ul>
 
 
@@ -747,10 +748,17 @@ function ConnectionDetectionWithServer() {
 
 //////////////////////   获取FRAME页面 方法    GetfunIniGroup     E //////////////////////
 
-
-
-
-
+// see https://docs.apicloud.com/Client-API/api#33
+function goUrl (params) {
+  params = params || {}
+  api.openWin({
+    name: params.name,
+    url: params.url,
+    pageParam: {
+      name: params.pageName
+    }
+  });
+}
 </script>
 
 
