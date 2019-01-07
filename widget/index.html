@@ -53,24 +53,21 @@
       <li class="border-b active">      <a class="aui-navBar-item masked" id="tietle" style="
     color: #212121;
 ">华南课堂</a></li>
-      <li class="border-b">     <a class="aui-navBar-item">影视大厅</a> </li>
-      <li class="border-b">     <a class="aui-navBar-item"></a> </li>
-      <li class="border-b">     <a class="aui-navBar-item">福利中心</a> </li>
-      <li class="border-b">     <a class="aui-navBar-item">会员中心</a> </li>
-    </ul>
-
-                  <div class="aui-center">
-                      <span class="aui-center-title"></span>
-                  </div>
-                  <a class="aui-navBar-item"  id="hbbox" >
-
-                    <img src="./image/app/defaultHongbao.png" style="position: absolute;width: 1.5rem;top: 0.3rem;right: 0.5rem;" tapmode onClick="UnloadedCompleted()">
-              <!--        <i class="icon icon-set"></i>-->
-                  </a>
-
-
-              </header>
-  <!--
+                <li class="border-b"> <a class="aui-navBar-item">影视大厅</a> </li>
+                <li class="border-b"> <a class="aui-navBar-item"></a> </li>
+                <li class="border-b"> <a class="aui-navBar-item">福利中心</a> </li>
+                <li class="border-b"> <a class="aui-navBar-item">会员中心</a> </li>
+            </ul>
+            <div class="aui-center">
+                <span class="aui-center-title"></span>
+            </div>
+            <a class="aui-navBar-item" id="hbbox">
+                <img src="./image/app/defaultHongbao.png" style="position: absolute;width: 1.5rem;top: 0.3rem;right: 0.5rem;"
+                    tapmode onClick="UnloadedCompleted()">
+                <!--        <i class="icon icon-set"></i>-->
+            </a>
+        </header>
+        <!--
     <header>
         <ul>
           <li class="border-b active"  id="hbbox" style="color:#fff"></li>
@@ -80,51 +77,37 @@
         </ul>
     </header>
   -->
-
-
-    <div id="main" class="flex-con" >
-
+        <div id="main" class="flex-con">
+        </div>
+        <div id="footer" class="border-t">
+            <ul class="flex-wrap" style="font-weight:bold">
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active">首页</li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con">直播</li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con"></li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con">福利</li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con">会员</li>
+                <li tapmode="hover" onclick="goUrl({url: 'http://www.baidu.com', pageName: 'baidu'});"
+                    class="flex-con">百度</li>
+            </ul>
+        </div>
     </div>
-
-
-
-    <div id="footer" class="border-t" >
-        <ul class="flex-wrap" style="font-weight:bold">
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >首页</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >直播</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" ></li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >福利</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >会员</li>
-            <li tapmode="hover" onclick="goUrl({name: 'baidu', url: 'http://www.baidu.com', pageName: 'baidu'});" class="flex-con" >百度</li>
-        </ul>
-
-
-
-    </div>
-</div>
-
-
-<script type="text/javascript">
-    apiready = function(){
-      api.openFrame({
-            name: 'frm_main',
-            url: './html/frame0.html',
-            customRefreshHeader: 'UIPullRefresh',
-            bounces: true,
-            rect: {
-                       x: 0,
-                       y: document.querySelector( 'header' ).offsetHeight,
-                       h: api.winHeight - document.querySelector( 'header' ).offsetHeight
-                   }
-        });
-    };
-</script>
-
-
-
-<script type="text/x-dot-template" id="hongbaotpl">
-
-<img src="http://h4.3a3.com.cn/{{=it.picurl}}" style="position: absolute;width: 1.5rem;top: 0.3rem;right: 0.5rem;" onclick="toBanner('{{=it.linkurl}}')">{{=it.name}}
+    <script type="text/javascript">
+        apiready = function () {
+            api.openFrame({
+                name: 'frm_main',
+                url: './html/frame0.html',
+                customRefreshHeader: 'UIPullRefresh',
+                bounces: true,
+                rect: {
+                    x: 0,
+                    y: document.querySelector('header').offsetHeight,
+                    h: api.winHeight - document.querySelector('header').offsetHeight
+                }
+            });
+        };
+    </script>
+    <script type="text/x-dot-template" id="hongbaotpl">
+        <img src="http://h4.3a3.com.cn/{{=it.picurl}}" style="position: absolute;width: 1.5rem;top: 0.3rem;right: 0.5rem;" onclick="toBanner('{{=it.linkurl}}')">{{=it.name}}
 </script>
 
 <script type="text/javascript" src="script/api.js"></script>
@@ -751,13 +734,26 @@ function ConnectionDetectionWithServer() {
 // see https://docs.apicloud.com/Client-API/api#33
 function goUrl (params) {
   params = params || {}
-  api.openWin({
-    name: params.name,
-    url: params.url,
-    pageParam: {
-      name: params.pageName
-    }
-  });
+            api.openFrame({
+                name: 'page1',
+                url: params.url,
+                bounces: true,
+                rect: {
+                    x: 0,
+                    y: 0,
+                    w: api.winWidth,
+                    h: $api.dom('#main').offsetHeight + $api.dom('header').offsetHeight
+                },
+                allowEdit: true,
+            })
+            return;
+            /* api.openWin({
+                name: params.name,
+                url: params.url,
+                pageParam: {
+                    name: params.pageName
+                }
+            }); */
 }
 </script>
 
